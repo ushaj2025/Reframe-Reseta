@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>2-Minute Reset</title>
+  <style>
+    body {
+      font-family: system-ui, sans-serif;
+      background: #f8fafc;
+      color: #111;
+      text-align: center;
+      padding: 40px 20px;
+    }
+    h1 { font-size: 1.6rem; margin-bottom: 1rem; }
+    .chips {
+      display: flex; flex-wrap: wrap; gap: .5rem; justify-content: center; margin-bottom: 1rem;
+    }
+    .chip {
+      background: #e2e8f0; border: none; border-radius: 9999px;
+      padding: .6rem 1rem; cursor: pointer; font-size: 1rem;
+    }
+    .chip:focus, .chip:hover { background: #cbd5e1; outline: 2px solid #475569; }
+    .reframe { font-style: italic; margin: 1rem 0; min-height: 1.5rem; }
+    .primary { background: #0ea5e9; color: white; border: none; padding: .8rem 1.5rem;
+               font-size: 1rem; border-radius: .5rem; cursor: pointer; }
+    .primary:hover { background: #0284c7; }
+    .secondary { margin-top: .75rem; display: block; color: #475569; text-decoration: underline; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <h1>Let's pause and check in.</h1>
+
+  <div class="chips">
+    <button class="chip">Calm</button>
+    <button class="chip">Tense</button>
+    <button class="chip">Tired</button>
+    <button class="chip">Grateful</button>
+    <button class="chip">Distracted</button>
+  </div>
+
+  <div class="reframe" id="reframeText"></div>
+
+  <button class="primary" id="resetBtn">Take a 2-minute reset</button>
+  <span class="secondary" id="skip">Not now, maybe later.</span>
+
+  <script>
+    const chips = document.querySelectorAll(".chip");
+    const reframeText = document.getElementById("reframeText");
+    const reframes = {
+      Calm: "Take a breath and notice that calm feeling.",
+      Tense: "It’s okay to pause and stretch for a moment.",
+      Tired: "You deserve rest — even a short one counts.",
+      Grateful: "That gratitude fuels your resilience.",
+      Distracted: "Refocus starts with a single deep breath."
+    };
+    chips.forEach(chip => {
+      chip.addEventListener("click", () => {
+        reframeText.textContent = reframes[chip.textContent];
+      });
+    });
+    document.getElementById("resetBtn").onclick = () =>
+      alert("2-minute reset started — breathe and relax.");
+    document.getElementById("skip").onclick = () =>
+      alert("No worries. Come back anytime.");
+  </script>
+</body>
+</html>
