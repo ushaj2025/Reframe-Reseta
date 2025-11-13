@@ -1,0 +1,490 @@
+{\rtf1\ansi\ansicpg1252\cocoartf2709
+\cocoatextscaling0\cocoaplatform0{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\margl1440\margr1440\vieww11520\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 <!DOCTYPE html>\
+<html lang="en">\
+<head>\
+  <meta charset="UTF-8" />\
+  <title>2-Minute Reset</title>\
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />\
+  <style>\
+    * \{\
+      box-sizing: border-box;\
+      margin: 0;\
+      padding: 0;\
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",\
+        sans-serif;\
+    \}\
+\
+    body \{\
+      background: #f6f7fb;\
+      display: flex;\
+      justify-content: center;\
+      align-items: center;\
+      min-height: 100vh;\
+      padding: 16px;\
+    \}\
+\
+    .app-container \{\
+      background: #ffffff;\
+      width: 100%;\
+      max-width: 420px;\
+      border-radius: 18px;\
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);\
+      padding: 20px 20px 24px;\
+    \}\
+\
+    .header \{\
+      font-size: 1.2rem;\
+      font-weight: 600;\
+      margin-bottom: 12px;\
+    \}\
+\
+    .subtext \{\
+      font-size: 0.9rem;\
+      color: #555;\
+      margin-bottom: 16px;\
+    \}\
+\
+    .section-label \{\
+      font-size: 0.85rem;\
+      font-weight: 600;\
+      text-transform: uppercase;\
+      letter-spacing: 0.04em;\
+      color: #888;\
+      margin-bottom: 10px;\
+    \}\
+\
+    .chips \{\
+      display: flex;\
+      flex-wrap: wrap;\
+      gap: 8px;\
+      margin-bottom: 18px;\
+    \}\
+\
+    .chip \{\
+      border-radius: 999px;\
+      border: 1px solid #dde1f0;\
+      padding: 6px 12px;\
+      font-size: 0.9rem;\
+      background: #f8f9ff;\
+      cursor: pointer;\
+      transition: background 0.15s, border-color 0.15s, transform 0.05s;\
+    \}\
+\
+    .chip:hover \{\
+      background: #e9edff;\
+      border-color: #c7cef7;\
+    \}\
+\
+    .chip:active \{\
+      transform: scale(0.97);\
+    \}\
+\
+    .chip.active \{\
+      background: #3c76ff;\
+      color: #fff;\
+      border-color: #3c76ff;\
+    \}\
+\
+    .link \{\
+      font-size: 0.85rem;\
+      color: #777;\
+      text-decoration: underline;\
+      cursor: pointer;\
+    \}\
+\
+    .card \{\
+      background: #f8f9ff;\
+      border-radius: 12px;\
+      padding: 14px;\
+      margin-bottom: 16px;\
+      border: 1px solid #e0e4f5;\
+      font-size: 0.95rem;\
+      line-height: 1.4;\
+      color: #333;\
+    \}\
+\
+    .card-title \{\
+      font-size: 0.85rem;\
+      font-weight: 600;\
+      text-transform: uppercase;\
+      letter-spacing: 0.04em;\
+      color: #777;\
+      margin-bottom: 6px;\
+    \}\
+\
+    .primary-btn,\
+    .secondary-btn \{\
+      width: 100%;\
+      padding: 10px 14px;\
+      border-radius: 999px;\
+      font-size: 0.95rem;\
+      border: none;\
+      cursor: pointer;\
+      margin-top: 8px;\
+      transition: background 0.15s, transform 0.05s, opacity 0.15s;\
+    \}\
+\
+    .primary-btn \{\
+      background: #3c76ff;\
+      color: #fff;\
+    \}\
+\
+    .primary-btn:hover \{\
+      background: #315ee0;\
+    \}\
+\
+    .secondary-btn \{\
+      background: transparent;\
+      border: 1px solid #cfd4ea;\
+      color: #444;\
+    \}\
+\
+    .primary-btn:active,\
+    .secondary-btn:active \{\
+      transform: scale(0.98);\
+    \}\
+\
+    .center \{\
+      text-align: center;\
+    \}\
+\
+    .timer-display \{\
+      font-size: 2.4rem;\
+      font-weight: 600;\
+      margin-bottom: 16px;\
+      color: #3c76ff;\
+    \}\
+\
+    .breath-dot \{\
+      width: 14px;\
+      height: 14px;\
+      border-radius: 50%;\
+      border: 2px solid #3c76ff;\
+      margin: 0 auto 12px;\
+      animation: breathe 2.8s ease-in-out infinite;\
+    \}\
+\
+    @keyframes breathe \{\
+      0% \{\
+        transform: scale(1);\
+        opacity: 0.7;\
+      \}\
+      50% \{\
+        transform: scale(1.5);\
+        opacity: 1;\
+      \}\
+      100% \{\
+        transform: scale(1);\
+        opacity: 0.7;\
+      \}\
+    \}\
+\
+    .small-text \{\
+      font-size: 0.85rem;\
+      color: #666;\
+      margin-top: 6px;\
+    \}\
+\
+    .screen \{\
+      display: none;\
+    \}\
+\
+    .screen.active-screen \{\
+      display: block;\
+    \}\
+\
+    footer \{\
+      margin-top: 16px;\
+      text-align: center;\
+      font-size: 0.75rem;\
+      color: #aaa;\
+    \}\
+  </style>\
+</head>\
+<body>\
+  <div class="app-container">\
+    <!-- SCREEN 1: CHECK-IN -->\
+    <div id="screen-1" class="screen active-screen">\
+      <div class="header">Let\'92s pause and check in.</div>\
+      <div class="subtext">\
+        Take a quick moment to see how you\'92re arriving to this moment.\
+      </div>\
+\
+      <div class="section-label">How are you arriving?</div>\
+\
+      <div class="chips">\
+        <button class="chip" data-chip="Calm">Calm</button>\
+        <button class="chip" data-chip="Tense">Tense</button>\
+        <button class="chip" data-chip="Tired">Tired</button>\
+        <button class="chip" data-chip="Distracted">Distracted</button>\
+        <button class="chip" data-chip="Grateful">Grateful</button>\
+        <button class="chip" data-chip="Overwhelmed">Overwhelmed</button>\
+      </div>\
+\
+      <div class="center" style="margin-top: 6px;">\
+        <span class="link" onclick="skipCheckIn()">Skip for now</span>\
+      </div>\
+    </div>\
+\
+    <!-- SCREEN 2: REFRAME -->\
+    <div id="screen-2" class="screen">\
+      <div class="header">A gentle shift\'85</div>\
+      <div class="subtext" id="selected-chip-text">\
+        You checked in as: <strong>\'97</strong>\
+      </div>\
+\
+      <div class="card">\
+        <div class="card-title">Reframe</div>\
+        <div id="reframe-text">\
+          It\'92s okay to take a moment before moving on. Try softening the\
+          pressure you\'92re putting on yourself\'97you\'92re doing enough for right now.\
+        </div>\
+      </div>\
+\
+      <div class="card">\
+        <div class="card-title">Tiny action</div>\
+        <div id="micro-action-text">\
+          Take 3 slow breaths while letting your shoulders soften and your jaw\
+          unclench.\
+        </div>\
+      </div>\
+\
+      <button class="primary-btn" onclick="goToTimer()">\
+        Take a 2-minute Reset\
+      </button>\
+      <button class="secondary-btn" onclick="goHome()">\
+        Not now, maybe later\
+      </button>\
+    </div>\
+\
+    <!-- SCREEN 3: TIMER -->\
+    <div id="screen-3" class="screen center">\
+      <div class="header">2-minute reset</div>\
+      <div class="subtext">\
+        Breathe, soften, and let your mind land for a moment.\
+      </div>\
+\
+      <div class="timer-display" id="timer-display">02:00</div>\
+      <div class="breath-dot"></div>\
+\
+      <div class="card">\
+        <div id="timer-tip">\
+          Inhale slowly through your nose\'85 exhale gently through your mouth.\
+        </div>\
+        <div class="small-text" id="tip-rotation-note">\
+          New gentle reminders will appear as the timer runs.\
+        </div>\
+      </div>\
+\
+      <button class="secondary-btn" onclick="endResetEarly()">\
+        End Reset Early\
+      </button>\
+    </div>\
+\
+    <!-- SCREEN 4: COMPLETION -->\
+    <div id="screen-4" class="screen center">\
+      <div class="header">Nice work today.</div>\
+      <div class="subtext">\
+        That small reset was a step toward showing yourself care.\
+      </div>\
+\
+      <div class="card">\
+        <div>\
+          What\'92s one gentle thing you can do next\'97like a sip of water, a slow\
+          stretch, or finishing one small task?\
+        </div>\
+      </div>\
+\
+      <button class="primary-btn" onclick="goHome()">\
+        Return Home\
+      </button>\
+      <button class="secondary-btn" onclick="saveReframe()">\
+        Save this Reframe\
+      </button>\
+      <div class="small-text" id="save-message"></div>\
+    </div>\
+\
+    <footer>\
+      Mindset check-in \'b7 Not therapy, just gentle guidance\
+    </footer>\
+  </div>\
+\
+  <script>\
+    const screens = \{\
+      1: document.getElementById("screen-1"),\
+      2: document.getElementById("screen-2"),\
+      3: document.getElementById("screen-3"),\
+      4: document.getElementById("screen-4"),\
+    \};\
+\
+    const chips = document.querySelectorAll(".chip");\
+    const selectedChipText = document.getElementById("selected-chip-text");\
+    const reframeText = document.getElementById("reframe-text");\
+    const microActionText = document.getElementById("micro-action-text");\
+    const timerDisplay = document.getElementById("timer-display");\
+    const timerTip = document.getElementById("timer-tip");\
+    const saveMessage = document.getElementById("save-message");\
+\
+    let selectedChip = null;\
+    let timerInterval = null;\
+    let timeRemaining = 120; // 2 minutes (in seconds) \'96 you can change this\
+\
+    const reframesByChip = \{\
+      Calm: \{\
+        reframe:\
+          "You\'92re arriving with some steadiness. Notice what supports that calm and see if you can keep one piece of it with you.",\
+        action:\
+          "Gently scan your body from head to toe, noticing any areas that are already at ease.",\
+      \},\
+      Tense: \{\
+        reframe:\
+          "It makes sense to feel tense when a lot is on your mind. Tension is your system trying to protect you.",\
+        action:\
+          "Roll your shoulders slowly three times, then unclench your hands and place them loosely in your lap.",\
+      \},\
+      Tired: \{\
+        reframe:\
+          "Feeling tired means you\'92ve been carrying a lot. It\'92s okay to move more slowly.",\
+        action:\
+          "Close your eyes for a few seconds and take one deeper breath than usual.",\
+      \},\
+      Distracted: \{\
+        reframe:\
+          "A busy mind is a sign you\'92re juggling many things. You don\'92t have to hold them all at once.",\
+        action:\
+          "Choose one thing to focus on for just the next two minutes\'97nothing else needs your attention right now.",\
+      \},\
+      Grateful: \{\
+        reframe:\
+          "Gratitude is a powerful anchor. You can let it support you as you move through the rest of your day.",\
+        action:\
+          "Bring to mind one person, place, or moment you\'92re grateful for and linger with that image for a breath or two.",\
+      \},\
+      Overwhelmed: \{\
+        reframe:\
+          "Overwhelm often means there\'92s simply too much on your plate\'97not that there\'92s anything wrong with you.",\
+        action:\
+          "Pick one tiny next step and let everything else sit on the shelf for a few minutes.",\
+      \},\
+    \};\
+\
+    const timerTips = [\
+      "Inhale slowly through your nose, exhale gently through your mouth.",\
+      "Let your shoulders drop away from your ears.",\
+      "You don\'92t have to solve everything in this moment.",\
+      "Notice one thing you can see, one thing you can hear, one thing you can feel.",\
+      "It\'92s okay to take this pause\'97you\'92re allowed to rest for a moment.",\
+    ];\
+\
+    chips.forEach((chip) => \{\
+      chip.addEventListener("click", () => \{\
+        chips.forEach((c) => c.classList.remove("active"));\
+        chip.classList.add("active");\
+        selectedChip = chip.getAttribute("data-chip");\
+        applyReframe(selectedChip);\
+        showScreen(2);\
+      \});\
+    \});\
+\
+    function applyReframe(chipName) \{\
+      selectedChipText.innerHTML =\
+        "You checked in as: <strong>" + chipName + "</strong>";\
+      const content = reframesByChip[chipName] || reframesByChip["Tired"];\
+      reframeText.textContent = content.reframe;\
+      microActionText.textContent = content.action;\
+    \}\
+\
+    function showScreen(number) \{\
+      Object.values(screens).forEach((screen) =>\
+        screen.classList.remove("active-screen")\
+      );\
+      screens[number].classList.add("active-screen");\
+    \}\
+\
+    function skipCheckIn() \{\
+      selectedChip = null;\
+      selectedChipText.innerHTML =\
+        "You skipped labeling how you feel\'97that\'92s okay. You can still take a gentle reset.";\
+      reframeText.textContent =\
+        "You don\'92t have to name what you feel to deserve a pause. This reset is here for you anyway.";\
+      microActionText.textContent =\
+        "Simply notice your breath coming in and going out for a few cycles.";\
+      showScreen(2);\
+    \}\
+\
+    function goToTimer() \{\
+      showScreen(3);\
+      startTimer();\
+    \}\
+\
+    function goHome() \{\
+      clearTimer();\
+      timeRemaining = 120; // reset to 2 minutes (change if you adjust)\
+      updateTimerDisplay();\
+      chips.forEach((c) => c.classList.remove("active"));\
+      selectedChip = null;\
+      saveMessage.textContent = "";\
+      showScreen(1);\
+    \}\
+\
+    function startTimer() \{\
+      clearTimer();\
+      updateTimerDisplay();\
+      let tipIndex = 0;\
+      timerTip.textContent = timerTips[tipIndex];\
+\
+      timerInterval = setInterval(() => \{\
+        timeRemaining -= 1;\
+        if (timeRemaining < 0) \{\
+          clearTimer();\
+          completeReset();\
+          return;\
+        \}\
+\
+        updateTimerDisplay();\
+\
+        if (timeRemaining % 20 === 0) \{\
+          tipIndex = (tipIndex + 1) % timerTips.length;\
+          timerTip.textContent = timerTips[tipIndex];\
+        \}\
+      \}, 1000);\
+    \}\
+\
+    function updateTimerDisplay() \{\
+      const minutes = Math.floor(timeRemaining / 60)\
+        .toString()\
+        .padStart(2, "0");\
+      const seconds = (timeRemaining % 60).toString().padStart(2, "0");\
+      timerDisplay.textContent = minutes + ":" + seconds;\
+    \}\
+\
+    function clearTimer() \{\
+      if (timerInterval) \{\
+        clearInterval(timerInterval);\
+        timerInterval = null;\
+      \}\
+    \}\
+\
+    function endResetEarly() \{\
+      clearTimer();\
+      completeReset();\
+    \}\
+\
+    function completeReset() \{\
+      showScreen(4);\
+    \}\
+\
+    function saveReframe() \{\
+      saveMessage.textContent =\
+        "Reframe noted. You can return to this mindset whenever you like.";\
+    \}\
+  </script>\
+</body>\
+</html>\
+}
